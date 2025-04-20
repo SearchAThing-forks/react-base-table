@@ -75,9 +75,7 @@
     "lerna": "^8.2.2",
     "lint-staged": "^15.5.1",
     "node-sass": "^9.0.0",
-    "prettier": "^3.5.3",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "prettier": "^3.5.3",    
     "react-test-renderer": "^19.1.0",
     "rimraf": "^6.0.1"
   },
