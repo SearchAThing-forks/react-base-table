@@ -11,6 +11,17 @@ declare module 'react-base-table' {
 
   export type CallOrReturn<T, P = any[]> = T | (P extends any[] ? (...p: P) => T : (p: P) => T);
 
+  export interface ColumnShapeRender<T = unknown> {
+    cellData: any;
+    columns: ColumnShape<T>[];
+    column: ColumnShape<T>;
+    columnIndex: number;
+    rowData: T;
+    rowIndex: number;
+    container: BaseTable<T>;
+    isScrolling?: boolean;
+  }
+
   export interface ColumnShape<T = unknown> {
     /**
      * Unique key for each column
@@ -114,16 +125,7 @@ declare module 'react-base-table' {
      */
     cellRenderer?: CallOrReturn<
       React.ReactNode,
-      {
-        cellData: any;
-        columns: ColumnShape<T>[];
-        column: ColumnShape<T>;
-        columnIndex: number;
-        rowData: T;
-        rowIndex: number;
-        container: BaseTable<T>;
-        isScrolling?: boolean;
-      }
+      ColumnShapeRender<T>
     >;
     /**
      * Custom column header renderer
@@ -155,6 +157,13 @@ declare module 'react-base-table' {
       readonly NONE: false;
     };
   }
+
+  export interface BaseTablePropsSortBy<T = unknown> {
+    key: string | number;
+    order: SortOrder;
+  }
+
+  export interface BaseTablePropsOnColumnSort<T = unknown> { column?: ColumnShape<T>; key: string | number; order: SortOrder }
 
   export interface BaseTableProps<T = unknown> {
     /**
@@ -384,10 +393,7 @@ declare module 'react-base-table' {
     /**
      * The sort state for the table, will be ignored if `sortState` is set
      */
-    sortBy?: {
-      key: string | number;
-      order: SortOrder;
-    };
+    sortBy?: BaseTablePropsSortBy<T>;
     /**
      * Multiple columns sort state for the table
      *
@@ -406,7 +412,7 @@ declare module 'react-base-table' {
      * A callback function for the header cell click event
      * The handler is of the shape of `({ column, key, order }) => *`
      */
-    onColumnSort?: (args: { column: ColumnShape<T>; key: string | number; order: SortOrder }) => void;
+    onColumnSort?: (args: BaseTablePropsOnColumnSort<T>) => void;
     /**
      * A callback function when resizing the column width
      * The handler is of the shape of `({ column, width }) => *`
