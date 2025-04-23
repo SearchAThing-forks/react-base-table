@@ -163,7 +163,9 @@ declare module 'react-base-table' {
     order: SortOrder;
   }
 
-  export interface BaseTablePropsOnColumnSort<T = unknown> { column?: ColumnShape<T>; key: string | number; order: SortOrder }
+  export interface BaseTablePropsOnColumnSortBase<T = unknown> {  key: string | number; order: SortOrder }
+
+  export interface BaseTablePropsOnColumnSort<T = unknown> extends BaseTablePropsOnColumnSortBase<T> { column?: ColumnShape<T>; }
 
   export interface BaseTableProps<T = unknown> {
     /**
@@ -189,7 +191,7 @@ declare module 'react-base-table' {
     /**
      * The data for the table
      */
-    data?: T[];
+    data?: T[];        
     /**
      * The data to be frozen to top, `rowIndex` is negative and starts from `-1`
      */
@@ -478,6 +480,10 @@ declare module 'react-base-table' {
      * The handler is of the shape of `({ size, vertical, horizontal }) => *`
      */
     onScrollbarPresenceChange?: (args: { size: number; vertical: boolean; horizontal: boolean }) => void;
+    /**
+     * Save and autorestore scrolltop using to given localstorage key
+     */
+    saveScrollTop?: string;    
     /**
      * A object for the row event handlers
      * Each of the keys is row event name, like `onClick`, `onDoubleClick` and etc.
