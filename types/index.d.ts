@@ -483,7 +483,7 @@ declare module 'react-base-table' {
     /**
      * Save and autorestore scrolltop using to given localstorage key
      */
-    saveScrollTop?: string;    
+    // saveScrollTop?: string;    
     /**
      * A object for the row event handlers
      * Each of the keys is row event name, like `onClick`, `onDoubleClick` and etc.

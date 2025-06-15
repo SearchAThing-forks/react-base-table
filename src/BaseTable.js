@@ -66,7 +66,7 @@ class BaseTable extends React.PureComponent {
       resizingKey: null,
       resizingWidth: 0,
       expandedRowKeys: cloneArray(defaultExpandedRowKeys),
-      saveScrollTopRestored: false
+      // saveScrollTopRestored: false
     };
     this.columnManager = new ColumnManager(getColumns(columns, children), props.fixed);
 
@@ -731,16 +731,16 @@ class BaseTable extends React.PureComponent {
       [`${classPrefix}--dynamic`]: !!estimatedRowHeight,
     });
 
-    const { saveScrollTopRestored } = this.state;    
+    // const { saveScrollTopRestored } = this.state;    
 
-    if (this.props.saveScrollTop && saveScrollTopRestored < 2) {
-      const q = localStorage.getItem(this.props.saveScrollTop)      
+    // if (this.props.saveScrollTop && saveScrollTopRestored < 2) {
+    //   const q = localStorage.getItem(this.props.saveScrollTop)      
 
-      if (this._scroll.scrollTop === 0) {
-          this.scrollToTop(q)
-          this.setState({ saveScrollTopRestored: true })
-      }      
-    }
+    //   if (this._scroll.scrollTop === 0) {
+    //       this.scrollToTop(q)
+    //       this.setState({ saveScrollTopRestored: true })
+    //   }      
+    // }
 
     return (
       <div ref={this._setContainerRef} className={cls} style={containerStyle}>
